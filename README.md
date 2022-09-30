@@ -160,7 +160,7 @@ add_action('wp_enqueue_scripts', 'allyearcooling_enqueue_style_scripts');
 
 // AJAX CODE 
 
-wp_localize_script( 'FrontEndAjax', 'ajax', array(
+wp_localize_script( 'allyearcooling_custom_js', 'ajax', array(
     'url' => admin_url( 'admin-ajax.php' )
 ) );
 
