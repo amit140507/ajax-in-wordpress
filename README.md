@@ -148,19 +148,19 @@ rules: {
 ## Step 4 
 Put this code in **`functions.php`**
 ```
-	function allyearcooling_enqueue_style_scripts()
+	function new_enqueue_style_scripts()
 {
 $style_ver = filemtime( get_stylesheet_directory() . '/assets/js/custom.js' );
-wp_register_script('allyearcooling_custom_js', get_stylesheet_directory_uri().'/assets/js/custom.js', array(), $style_ver);
-wp_enqueue_script('allyearcooling_custom_js');
+wp_register_script('new_custom_js', get_stylesheet_directory_uri().'/assets/js/custom.js', array(), $style_ver);
+wp_enqueue_script('new_custom_js');
 }
-add_action('wp_enqueue_scripts', 'allyearcooling_enqueue_style_scripts');
+add_action('wp_enqueue_scripts', 'new_enqueue_style_scripts');
 
 
 
 // AJAX CODE 
 
-wp_localize_script( 'allyearcooling_custom_js', 'ajax', array(
+wp_localize_script( 'new_custom_js', 'ajax', array(
     'url' => admin_url( 'admin-ajax.php' )
 ) );
 
