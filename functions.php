@@ -30,6 +30,5 @@ function payment_processing_data()
 // CUSTOM CODE START HERE
 
 //CUSTOM CODE END HERE
-}	
-exit;	
+
 }
