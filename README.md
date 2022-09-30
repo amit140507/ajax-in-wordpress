@@ -2,7 +2,7 @@
 Proper Way to use ajax in wordpress
 
 ## Step 1 
-Put this code inside **<head></head>** in **header.php **.
+Put this code inside "`"<head></head>"`" in **header.php **.
 
 ```
 <script type="text/javascript">
