@@ -19,7 +19,7 @@ add_action('wp_ajax_nopriv_payment_processing_data', 'payment_processing_data');
 
 function payment_processing_data()
 {
-	
+	// CUSTOM DATA START HERE
  $first_name_user = $_POST['first_name_user'];
  $last_name_user = $_POST['last_name_user'];
  $email_forpay = $_POST['email_forpay'];
@@ -42,7 +42,7 @@ curl_setopt_array($curl, [
   CURLOPT_HTTPHEADER => [
     "Accept: application/json",
     "Content-Type: application/json",
-    "X-CC-Api-Key: c57344fd-b2f1-4540-be74-77a52f8f6188",
+    "X-CC-Api-Key: ",
     "X-CC-Version: 2018-03-22"
   ],
 ]);
@@ -61,6 +61,8 @@ if ($err) {
  $redirect= $array['data']['hosted_url'];
 
  echo $redirect= $array['data']['hosted_url'];
+
+//CUSTOM DATA END HERE
 }	
 exit;	
 }
