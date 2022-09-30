@@ -5,7 +5,7 @@
 <div class="container">
     <div class="payment-page-cooling-text">
     <p>
-    Submit your invoice payment to All Year Cooling utilizing crypto currencies.  We accept payment via Bitcoin, Ethereum, USD Coin, Dogecoin, Litecoin, Dai and Bitcoin Cash. To submit a payment, please enter your email address, invoice number, and payment amount (in US Dollars) in the box below.</p>
+   Custom Form</p>
 </div>
     <div class="payment-inner-section">
     <form method="post" action="" class="field-all-form">
