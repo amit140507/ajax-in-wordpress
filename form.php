@@ -1,0 +1,53 @@
+<?php 
+    /* Template Name: payment-template */
+    get_header();
+?>
+<div class="container">
+    <div class="payment-page-cooling-text">
+    <p>
+    Submit your invoice payment to All Year Cooling utilizing crypto currencies.  We accept payment via Bitcoin, Ethereum, USD Coin, Dogecoin, Litecoin, Dai and Bitcoin Cash. To submit a payment, please enter your email address, invoice number, and payment amount (in US Dollars) in the box below.</p>
+</div>
+    <div class="payment-inner-section">
+    <form method="post" action="" class="field-all-form">
+         <div class="email-field">
+            <label for="first_name_user">First Name</label>
+            <input type="text" name="first_name_user" class="field-name-pay"/>
+        </div>
+         <div class="email-field">
+            <label for="last_name_user">Last Name</label>
+            <input type="text" name="last_name_user" class="field-last-pay"/>
+        </div>
+        <div class="email-field">
+            <label for="email_forpay">Email</label>
+            <input type="email" name="email_forpay" class="field-email-pay"/>
+        </div>
+        
+        <div class="ammount-field">
+            <label for="ammount_forpay">Amount (In USD)</label>
+            <input type="text" name="ammount_forpay" class="field-ammount-pay"/>
+        </div>
+         <div class="email-field">
+            <label for="pin_code_forpay">Zip Code</label>
+            <input type="text" name="pin_code_forpay" class="field-pin-pay"/>
+        </div>
+        <div class="email-field">
+            <label for="phone_num_forpay">Phone number</label>
+            <input type="text" name="phone_num_forpay" class="field-phone-pay"/>
+        </div>
+
+        
+        <input type="submit" value="Submit" name="btn_forpay" class="btn-submit-pay"/>
+            
+        <div class="data-output">
+            <?php echo $output; ?>
+        </div>
+        
+    </form>
+    
+</div>
+    </div>
+    
+ 
+<?php
+    get_footer();
+?>
