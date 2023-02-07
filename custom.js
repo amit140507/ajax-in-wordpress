@@ -1,69 +1,55 @@
 jQuery(document).ready(function(){
-
-jQuery(".field-all-form").validate({
+jQuery(".form-class").validate({
 rules: {
-         first_name_user: "required", 
-         last_name_user: "required", 
-         email_forpay: {       
-             required: true,
-             email: true
+         first_name_: "required", 
+         last_name: "required", 
+         email: {       
+        required: true,
+            email: true
          },
-        ammount_forpay: {
+        amount: {
         required: true
         },
-        pin_code_forpay: "required",
-        phone_num_forpay: {
+        zipcode: "required",
+        phone_number: {
         required: true,
         number: true
         }, 
-
      },
-
     messages: {
-        first_name_user: "Enter your first name",
-        last_name_user: "Enter your last name",
-        email_forpay: "Enter a valid email address",
-        ammount_forpay: "Please enter amount in numbers only",
-        pin_code_forpay: "Enter zip code",
-        phone_num_forpay: "Enter your mobile number",
+        first_name: "Enter your first name",
+        last_name: "Enter your last name",
+        email: "Enter a valid email address",
+        amount: "Please enter amount in numbers only",
+        zipcode: "Enter zip code",
+        phone_number: "Enter your mobile number",
      },
      submitHandler: function(form) {
-		// event.preventDefault();
-        var formData = { 
-        first_name_user: jQuery(".field-name-pay").val(),
-        last_name_user:  jQuery(".field-last-pay").val(),
-        email_forpay:   jQuery(".field-email-pay").val(),
-        ammount_forpay: jQuery(".field-ammount-pay").val(),
-        pin_code_forpay: jQuery(".field-pin-pay").val(),
-        phone_num_forpay: jQuery(".field-phone-pay").val(),
-     }
-		
-	var first_name_user = jQuery(".field-name-pay").val();
-    var last_name_user =  jQuery(".field-last-pay").val();
-    var email_forpay =   jQuery(".field-email-pay").val();
-    var ammount_forpay = jQuery(".field-ammount-pay").val();
-    var pin_code_forpay = jQuery(".field-pin-pay").val();
-    var phone_num_forpay = jQuery(".field-phone-pay").val();	
-//	var ajaxurl = "<?php echo admin_url('admin-ajax.php'); ?>";
-		
-      $.ajax({
-      type: "POST",		 
-	  url:ajaxurl,
+        // event.preventDefault();
+
+    var first_name = jQuery(".first-name-class").val();
+    var last_name =  jQuery(".last-name-class").val();
+    var email =   jQuery(".email-class").val();
+    var amount = jQuery(".amount-class").val();
+    var zipcode = jQuery(".zipcode-class").val();
+    var phone_number = jQuery(".phone-number-class").val(); 
+
+  // var ajaxurl = "<?php echo admin_url('admin-ajax.php'); ?>";
+        
+      jQuery.ajax({
+      type: "POST",      
+      url:customform.ajaxurl,
         data: {
-            action: 'payment_processing_data',
-			first_name_user:first_name_user,
-			last_name_user:last_name_user,
-			email_forpay:email_forpay,
-			ammount_forpay:ammount_forpay,
-			pin_code_forpay:pin_code_forpay,
-			phone_num_forpay:phone_num_forpay,
+            action: 'form_submit_ajax',
+            first_name:first_name,
+            last_name:last_name,
+            email:email,
+            amount:amount,
+            zipcode:zipcode,
+            phone_number:phone_number,
         },
-        success:  function(response){
-		
+        success:  function(response){        
          console.log("---"+response);
-		window.location.href = response;
-// var removespace = response.replace(/&/g, '&');
-// location.replace (removespace);
     }
        });
  }
