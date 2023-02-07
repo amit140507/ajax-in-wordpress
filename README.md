@@ -7,53 +7,43 @@ Create A New Page Called **`form.php`**.
 
 ```
 <?php 
-    /* Template Name: payment-template */
+    /* Template Name: Form Template */
     get_header();
 ?>
 <div class="container">
-    <div class="payment-page-cooling-text">
-    <p>
-   Custom Form</p>
-</div>
-    <div class="payment-inner-section">
-    <form method="post" action="" class="field-all-form">
-         <div class="email-field">
-            <label for="first_name_user">First Name</label>
-            <input type="text" name="first_name_user" class="field-name-pay"/>
-        </div>
-         <div class="email-field">
-            <label for="last_name_user">Last Name</label>
-            <input type="text" name="last_name_user" class="field-last-pay"/>
-        </div>
-        <div class="email-field">
-            <label for="email_forpay">Email</label>
-            <input type="email" name="email_forpay" class="field-email-pay"/>
-        </div>
-        
-        <div class="ammount-field">
-            <label for="ammount_forpay">Amount (In USD)</label>
-            <input type="text" name="ammount_forpay" class="field-ammount-pay"/>
-        </div>
-         <div class="email-field">
-            <label for="pin_code_forpay">Zip Code</label>
-            <input type="text" name="pin_code_forpay" class="field-pin-pay"/>
-        </div>
-        <div class="email-field">
-            <label for="phone_num_forpay">Phone number</label>
-            <input type="text" name="phone_num_forpay" class="field-phone-pay"/>
-        </div>
-
-        
-        <input type="submit" value="Submit" name="btn_forpay" class="btn-submit-pay"/>
-            
-        <div class="data-output">
-            <?php echo $output; ?>
-        </div>
-        
-    </form>
-    
-</div>
+    <div class="title-div">
+        <p>Custom Form</p>
     </div>
+    <div class="inner-section">
+        <form method="post" action="" class="form-class">
+            <div class="first-name-field">
+                <label for="first_name">First Name</label>
+                <input type="text" name="first_name" class="first-name-class"/>
+            </div>
+            <div class="last-name-field">
+                <label for="last_name">Last Name</label>
+                <input type="text" name="last_name" class="last-name-class"/>
+            </div>
+            <div class="email-field">
+                <label for="email">Email</label>
+                <input type="email" name="email" class="email-class"/>
+            </div>
+            <div class="amount-field">
+                <label for="amount">Amount (In USD)</label>
+                <input type="text" name="amount" class="amount-class"/>
+            </div>
+            <div class="zipcode-field">
+                <label for="zipcode">Zip Code</label>
+                <input type="text" name="zipcode" class="zipcode-class"/>
+            </div>
+            <div class="phone-number-field">
+                <label for="phone_number">Phone number</label>
+                <input type="text" name="phone_number" class="phone-class"/>
+            </div>
+            <input type="submit" value="Submit" name="button_submit" class="submit-class"/>
+        </form>
+    </div>
+</div>
     
  
 <?php
@@ -62,83 +52,88 @@ Create A New Page Called **`form.php`**.
 ```
 
 ## Step 2
-Put this code inside `<head></head>` in **`header.php`**.
+Put this code inside `<head></head>` in **`header.php`**(By Default I am using this).**
 
 ```
 <script type="text/javascript">
 var ajaxurl = "<?php echo admin_url('admin-ajax.php'); ?>";
 </script>
 ```
+### OR
+
+Put this code in **`functions.php`**.
+```
+add_action('wp_head', 'custom_ajaxurl');
+function custom_ajaxurl() {
+
+   echo '<script type="text/javascript">
+           var ajaxurl = "' . admin_url('admin-ajax.php') . '";
+         </script>';
+}
+```
+
+### OR
+
+Add this code in **`custom.js`**.
+```
+var ajaxurl = "<?php echo admin_url('admin-ajax.php'); ?>";
+```
 
 ## Step 3
 Create a file called **`custom.js`** in asset folder.
 ```
 jQuery(document).ready(function(){
-
-jQuery(".field-all-form").validate({
+jQuery(".form-class").validate({
 rules: {
-         first_name_user: "required", 
-         last_name_user: "required", 
-         email_forpay: {       
-             required: true,
-             email: true
+         first_name_: "required", 
+         last_name: "required", 
+         email: {       
+        required: true,
+            email: true
          },
-        ammount_forpay: {
+        amount: {
         required: true
         },
-        pin_code_forpay: "required",
-        phone_num_forpay: {
+        zipcode: "required",
+        phone_number: {
         required: true,
         number: true
         }, 
-
      },
-
     messages: {
-        first_name_user: "Enter your first name",
-        last_name_user: "Enter your last name",
-        email_forpay: "Enter a valid email address",
-        ammount_forpay: "Please enter amount in numbers only",
-        pin_code_forpay: "Enter zip code",
-        phone_num_forpay: "Enter your mobile number",
+        first_name: "Enter your first name",
+        last_name: "Enter your last name",
+        email: "Enter a valid email address",
+        amount: "Please enter amount in numbers only",
+        zipcode: "Enter zip code",
+        phone_number: "Enter your mobile number",
      },
      submitHandler: function(form) {
-		// event.preventDefault();
-        var formData = { 
-        first_name_user: jQuery(".field-name-pay").val(),
-        last_name_user:  jQuery(".field-last-pay").val(),
-        email_forpay:   jQuery(".field-email-pay").val(),
-        ammount_forpay: jQuery(".field-ammount-pay").val(),
-        pin_code_forpay: jQuery(".field-pin-pay").val(),
-        phone_num_forpay: jQuery(".field-phone-pay").val(),
-     }
-		
-	var first_name_user = jQuery(".field-name-pay").val();
-    var last_name_user =  jQuery(".field-last-pay").val();
-    var email_forpay =   jQuery(".field-email-pay").val();
-    var ammount_forpay = jQuery(".field-ammount-pay").val();
-    var pin_code_forpay = jQuery(".field-pin-pay").val();
-    var phone_num_forpay = jQuery(".field-phone-pay").val();	
-//	var ajaxurl = "<?php echo admin_url('admin-ajax.php'); ?>";
-		
-      $.ajax({
-      type: "POST",		 
-	  url:ajaxurl,
+        // event.preventDefault();
+
+    var first_name = jQuery(".first-name-class").val();
+    var last_name =  jQuery(".last-name-class").val();
+    var email =   jQuery(".email-class").val();
+    var amount = jQuery(".amount-class").val();
+    var zipcode = jQuery(".zipcode-class").val();
+    var phone_number = jQuery(".phone-number-class").val(); 
+
+  // var ajaxurl = "<?php echo admin_url('admin-ajax.php'); ?>";
+        
+      jQuery.ajax({
+      type: "POST",      
+      url:customform.ajaxurl,
         data: {
-            action: 'payment_processing_data',
-			first_name_user:first_name_user,
-			last_name_user:last_name_user,
-			email_forpay:email_forpay,
-			ammount_forpay:ammount_forpay,
-			pin_code_forpay:pin_code_forpay,
-			phone_num_forpay:phone_num_forpay,
+            action: 'form_submit_ajax',
+            first_name:first_name,
+            last_name:last_name,
+            email:email,
+            amount:amount,
+            zipcode:zipcode,
+            phone_number:phone_number,
         },
-        success:  function(response){
-		
+        success:  function(response){        
          console.log("---"+response);
-		window.location.href = response;
-// var removespace = response.replace(/&/g, '&');
-// location.replace (removespace);
     }
        });
  }
@@ -148,14 +143,29 @@ rules: {
 ## Step 4 
 Put this code in **`functions.php`**
 ```
-	function new_enqueue_style_scripts()
-{
-$style_ver = filemtime( get_stylesheet_directory() . '/assets/js/custom.js' );
-wp_register_script('new_custom_js', get_stylesheet_directory_uri().'/assets/js/custom.js', array(), $style_ver);
-wp_enqueue_script('new_custom_js');
-}
-add_action('wp_enqueue_scripts', 'new_enqueue_style_scripts');
+function custom_enqueue_script() {
+	wp_enqueue_script('jquery');   // Use this if wanna use build in Jquery Version.
+	// wp_register_script('jquery3', 'https://code.jquery.com/jquery-3.6.1.js'array(),'3.6.1', true);
+	// wp_register_script('jquery-migrate', 'https://code.jquery.com/jquery-migrate-3.4.0.min.js'array(),'3.6.1', true);
+	 wp_register_script('jquery_validate', 'https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.5/jquery.validate.min.js', array(), '1.19.5', false );
+	wp_register_script( 'custom-script', get_template_directory_uri() . '/assets/js/custom.js', array(), '1.0.0', true ); 
+	// wp_enqueue_script( 'jquery3');
+	// wp_enqueue_script( 'jquery-migrate');
+	 wp_enqueue_script('jquery_validate');
+	wp_enqueue_script( 'custom-script');
 
+	wp_localize_script( 'custom-script', 'customform', array(    'ajaxurl' => admin_url( 'admin-ajax.php' )));
+	
+}
+add_action( 'wp_enqueue_scripts', 'custom_enqueue_script' );
+
+
+// add_action('wp_head', 'custom_ajaxurl');
+// function custom_ajaxurl() {
+//    echo '<script type="text/javascript">
+//            var ajaxurl = "' . admin_url('admin-ajax.php') . '";
+//          </script>';
+// }
 
 
 // AJAX CODE 
@@ -164,23 +174,23 @@ wp_localize_script( 'new_custom_js', 'ajax', array(
     'url' => admin_url( 'admin-ajax.php' )
 ) );
 
-add_action('wp_ajax_payment_processing_data', 'payment_processing_data');
-add_action('wp_ajax_nopriv_payment_processing_data', 'payment_processing_data');
-
-function payment_processing_data()
+add_action('wp_ajax_form_submit_ajax', 'form_submit_ajax_function');
+add_action('wp_ajax_nopriv_form_submit_ajax', 'form_submit_ajax_function');
+function form_submit_ajax_function()
 {
-	
- $first_name_user = $_POST['first_name_user'];
- $last_name_user = $_POST['last_name_user'];
- $email_forpay = $_POST['email_forpay'];
- $ammount_forpay = $_POST['ammount_forpay'];
- $pin_code_forpay = $_POST['pin_code_forpay'];
- $phone_num_forpay = $_POST['phone_num_forpay'];
+   
+$first_name = $_POST['first_name'];
+$last_name = $_POST['last_name'];
+$email = $_POST['email'];
+$amount_forpay = $_POST['amount'];
+$zipcode = $_POST['zipcode'];
+$phone_number = $_POST['phone_number'];
 
+print_r($first_name);
 // CUSTOM CODE START HERE
-
 //CUSTOM CODE END HERE	
 
+wp_die();
 }
 ```
 
