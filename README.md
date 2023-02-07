@@ -145,13 +145,9 @@ Put this code in **`functions.php`**
 ```
 function custom_enqueue_script() {
 	wp_enqueue_script('jquery');   // Use this if wanna use build in Jquery Version.
-	// wp_register_script('jquery3', 'https://code.jquery.com/jquery-3.6.1.js'array(),'3.6.1', true);
-	// wp_register_script('jquery-migrate', 'https://code.jquery.com/jquery-migrate-3.4.0.min.js'array(),'3.6.1', true);
-	 wp_register_script('jquery_validate', 'https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.5/jquery.validate.min.js', array(), '1.19.5', false );
+	wp_register_script('jquery_validate', 'https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.5/jquery.validate.min.js', array(), '1.19.5', false );
 	wp_register_script( 'custom-script', get_template_directory_uri() . '/assets/js/custom.js', array(), '1.0.0', true ); 
-	// wp_enqueue_script( 'jquery3');
-	// wp_enqueue_script( 'jquery-migrate');
-	 wp_enqueue_script('jquery_validate');
+	wp_enqueue_script('jquery_validate');
 	wp_enqueue_script( 'custom-script');
 
 	wp_localize_script( 'custom-script', 'customform', array(    'ajaxurl' => admin_url( 'admin-ajax.php' )));
