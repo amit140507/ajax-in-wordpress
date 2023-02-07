@@ -166,10 +166,6 @@ add_action( 'wp_enqueue_scripts', 'custom_enqueue_script' );
 
 // AJAX CODE 
 
-wp_localize_script( 'new_custom_js', 'ajax', array(
-    'url' => admin_url( 'admin-ajax.php' )
-) );
-
 add_action('wp_ajax_form_submit_ajax', 'form_submit_ajax_function');
 add_action('wp_ajax_nopriv_form_submit_ajax', 'form_submit_ajax_function');
 function form_submit_ajax_function()
