@@ -188,6 +188,7 @@ wp_die();
 
 
 ## References
-[a WP Docs](https://codex.wordpress.org/AJAX_in_Plugins
-[a SOF](https://stackoverflow.com/a/17713643/20058739)
-[a SOF](https://stackoverflow.com/a/18614588)
+1) [WP Docs](https://codex.wordpress.org/AJAX_in_Plugins)
+2) [StakeOverflow](https://stackoverflow.com/a/17713643/20058739)
+3) [StakeOverflow](https://stackoverflow.com/a/18614588)
+
