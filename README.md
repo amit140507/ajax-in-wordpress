@@ -15,7 +15,7 @@ Create A New Page Called **`form.php`**.
         <p>Custom Form</p>
     </div>
     <div class="inner-section">
-        <form method="post" action="" class="form-class">
+        <form method="post" action="" class="form-class" id="form-id">
             <div class="first-name-field">
                 <label for="first_name">First Name</label>
                 <input type="text" name="first_name" class="first-name-class"/>
@@ -38,7 +38,7 @@ Create A New Page Called **`form.php`**.
             </div>
             <div class="phone-number-field">
                 <label for="phone_number">Phone number</label>
-                <input type="text" name="phone_number" class="phone-class"/>
+                <input type="text" name="phone_number" class="phone-number-class"/>
             </div>
             <input type="submit" value="Submit" name="button_submit" class="submit-class"/>
         </form>
@@ -125,12 +125,12 @@ rules: {
       url:customform.ajaxurl,
         data: {
             action: 'form_submit_ajax',
-            first_name:first_name,
-            last_name:last_name,
-            email:email,
-            amount:amount,
-            zipcode:zipcode,
-            phone_number:phone_number,
+            post_first_name:first_name,
+            post_last_name:last_name,
+            post_email:email,
+            post_amount:amount,
+            post_zipcode:zipcode,
+            post_phone_number:phone_number,
         },
         success:  function(response){        
          console.log("---"+response);
@@ -144,9 +144,11 @@ rules: {
 Put this code in **`functions.php`**
 ```
 function custom_enqueue_script() {
+
 	wp_enqueue_script('jquery');   // Use this if wanna use build in Jquery Version.
-	wp_register_script('jquery_validate', 'https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.5/jquery.validate.min.js', array(), '1.19.5', false );
+	wp_register_script('jquery_validate', 'https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.5/jquery.validate.min.js', array(), '1.19.5', true );
 	wp_register_script( 'custom-script', get_template_directory_uri() . '/assets/js/custom.js', array(), '1.0.0', true ); 
+
 	wp_enqueue_script('jquery_validate');
 	wp_enqueue_script( 'custom-script');
 
@@ -164,19 +166,19 @@ add_action( 'wp_enqueue_scripts', 'custom_enqueue_script' );
 // }
 
 
-// AJAX CODE 
+//AJAX CODE
 
 add_action('wp_ajax_form_submit_ajax', 'form_submit_ajax_function');
 add_action('wp_ajax_nopriv_form_submit_ajax', 'form_submit_ajax_function');
 function form_submit_ajax_function()
 {
    
-$first_name = $_POST['first_name'];
-$last_name = $_POST['last_name'];
-$email = $_POST['email'];
-$amount_forpay = $_POST['amount'];
-$zipcode = $_POST['zipcode'];
-$phone_number = $_POST['phone_number'];
+$first_name = $_POST['post_first_name'];
+$last_name = $_POST['post_last_name'];
+$email = $_POST['post_email'];
+$amount_forpay = $_POST['post_amount'];
+$zipcode = $_POST['post_zipcode'];
+$phone_number = $_POST['post_phone_number'];
 
 print_r($first_name);
 // CUSTOM CODE START HERE
@@ -194,14 +196,14 @@ wp_die();
 
 ## Clarification
 ### #1 
-***form_submit_ajax*** in **functions.php**
+***form_submit_ajax*** in **`functions.php`**
 
 ```
 add_action('wp_ajax_form_submit_ajax', 'form_submit_ajax_function');
 add_action('wp_ajax_nopriv_form_submit_ajax', 'form_submit_ajax_function');
 ```
 
-and **custom.js** need to be same.
+and **`custom.js`** need to be same.
 
 ``` 
       jQuery.ajax({
@@ -242,12 +244,12 @@ and **custom.js** need to be same.
     }
        });
 ```
-coming from this code from **functions.php**
+coming from this code from **`functions.php`**
 
 ```
 wp_localize_script( 'custom-script', 'customform', array(    'ajaxurl' => admin_url( 'admin-ajax.php' )));
 ```
-and this code from **header.php**
+and this code from **`header.php`**
 ```
 <script type="text/javascript">
 	var ajaxurl = "<?php echo admin_url('admin-ajax.php'); ?>";
