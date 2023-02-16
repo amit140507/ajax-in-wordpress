@@ -85,7 +85,7 @@ Create a file called **`custom.js`** in asset folder.
 jQuery(document).ready(function(){
 jQuery(".form-class").validate({
 rules: {
-         first_name_: "required", 
+         first_name: "required", 
          last_name: "required", 
          email: {       
         required: true,
