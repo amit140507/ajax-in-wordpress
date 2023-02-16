@@ -223,5 +223,33 @@ and **custom.js** need to be same.
 ```
 
 ### #2
+***customform.ajaxurl*** here is 
 ```
+      jQuery.ajax({
+      type: "POST",      
+      url:customform.ajaxurl,
+        data: {
+            action: 'form_submit_ajax',
+            post_first_name:first_name,
+            post_last_name:last_name,
+            post_email:email,
+            post_amount:amount,
+            post_zipcode:zipcode,
+            post_phone_number:phone_number,
+        },
+        success:  function(response){        
+         console.log("---"+response);
+    }
+       });
+```
+coming from this code from **functions.php**
+
+```
+wp_localize_script( 'custom-script', 'customform', array(    'ajaxurl' => admin_url( 'admin-ajax.php' )));
+```
+and this code from **header.php**
+```
+<script type="text/javascript">
+	var ajaxurl = "<?php echo admin_url('admin-ajax.php'); ?>";
+</script>
 ```
