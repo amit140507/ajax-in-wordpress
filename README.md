@@ -192,3 +192,36 @@ wp_die();
 2) [StakeOverflow](https://stackoverflow.com/a/17713643/20058739)
 3) [StakeOverflow](https://stackoverflow.com/a/18614588)
 
+## Clarification
+### #1 
+***form_submit_ajax*** in **functions.php**
+
+```
+add_action('wp_ajax_form_submit_ajax', 'form_submit_ajax_function');
+add_action('wp_ajax_nopriv_form_submit_ajax', 'form_submit_ajax_function');
+```
+
+and **custom.js** need to be same.
+
+``` 
+      jQuery.ajax({
+      type: "POST",      
+      url:customform.ajaxurl,
+        data: {
+            action: 'form_submit_ajax',
+            post_first_name:first_name,
+            post_last_name:last_name,
+            post_email:email,
+            post_amount:amount,
+            post_zipcode:zipcode,
+            post_phone_number:phone_number,
+        },
+        success:  function(response){        
+         console.log("---"+response);
+    }
+       });
+```
+
+### #2
+```
+```
