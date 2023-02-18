@@ -176,7 +176,7 @@ function form_submit_ajax_function()
 $first_name = $_POST['post_first_name'];
 $last_name = $_POST['post_last_name'];
 $email = $_POST['post_email'];
-$amount_forpay = $_POST['post_amount'];
+$amount = $_POST['post_amount'];
 $zipcode = $_POST['post_zipcode'];
 $phone_number = $_POST['post_phone_number'];
 
